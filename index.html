@@ -3,166 +3,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PREMIUM LOTTO 6/45 - 행운의 번호 생성기</title>
+    <title>로또 6/45 완벽 가이드 - 번호 생성기, 확률 분석, 당첨 전략</title>
+    <meta name="description" content="로또 6/45 번호 추천 생성기와 함께 당첨 확률 분석, 번호 선택 전략, 역대 당첨 통계 등 로또에 관한 모든 정보를 제공합니다.">
+    <meta name="keywords" content="로또, 로또 6/45, 로또 번호 생성기, 로또 확률, 로또 당첨, 로또 전략">
+    <meta name="author" content="LottoText">
+    <link rel="canonical" href="https://lottotext-quantum.pages.dev/">
+    <!-- Open Graph -->
+    <meta property="og:title" content="로또 6/45 완벽 가이드 - 번호 생성기 & 확률 분석">
+    <meta property="og:description" content="AI 기반 로또 번호 추천과 당첨 확률 분석, 전략 가이드를 무료로 제공합니다.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lottotext-quantum.pages.dev/">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Pretendard:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5279002869073573"
          crossorigin="anonymous"></script>
-    
+
     <style>
         :root {
             /* Default Dark Mode */
             --bg-color: #0c0d12;
+            --bg-secondary: #13141b;
             --glass-bg: rgba(23, 25, 35, 0.4);
             --glass-border: rgba(255, 255, 255, 0.06);
+            --card-bg: rgba(30, 33, 48, 0.6);
             --primary: #6366f1;
             --primary-glow: rgba(99, 102, 241, 0.4);
             --accent: #d946ef;
             --text-main: #f8fafc;
+            --text-secondary: #cbd5e1;
             --text-muted: #94a3b8;
             --bg-gradient-1: rgba(99, 102, 241, 0.15);
             --bg-gradient-2: rgba(217, 70, 239, 0.1);
             --bg-gradient-3: rgba(30, 41, 59, 0.5);
-            
+            --divider: rgba(255, 255, 255, 0.06);
+            --shadow: rgba(0, 0, 0, 0.5);
+
             /* Lotto Ball Colors */
-            --ball-1: linear-gradient(135deg, #ffd54f 0%, #ffb300 100%); /* 1-10 */
-            --ball-11: linear-gradient(135deg, d#ef5350 0%, #c62828 100%); /* 21-30 */
-            --ball-31: linear-gradient(135deg, #b0bec5 0%, #546e7a 100%); /* 31-40 */
-            --ball-41: linear-gradient(135deg, #81c784 0%, #388e3c 100%); /* 41-45 */
+            --ball-1: linear-gradient(135deg, #ffd54f 0%, #ffb300 100%);
+            --ball-11: linear-gradient(135deg, #64b5f6 0%, #1976d2 100%);
+            --ball-21: linear-gradient(135deg, #ef5350 0%, #c62828 100%);
+            --ball-31: linear-gradient(135deg, #b0bec5 0%, #546e7a 100%);
+            --ball-41: linear-gradient(135deg, #81c784 0%, #388e3c 100%);
         }
 
         body.light-mode {
             --bg-color: #f1f5f9;
+            --bg-secondary: #e2e8f0;
             --glass-bg: rgba(255, 255, 255, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-border: rgba(0, 0, 0, 0.06);
+            --card-bg: rgba(255, 255, 255, 0.8);
             --primary: #4f46e5;
             --primary-glow: rgba(79, 70, 229, 0.2);
             --accent: #c026d3;
             --text-main: #0f172a;
-            --text-muted: #475569;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
             --bg-gradient-1: rgba(99, 102, 241, 0.06);
             --bg-gradient-2: rgba(217, 70, 239, 0.04);
             --bg-gradient-3: rgba(200, 200, 220, 0.3);
+            --divider: rgba(0, 0, 0, 0.08);
+            --shadow: rgba(0, 0, 0, 0.08);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            user-select: none;
         }
 
         body {
-            font-family: 'Outfit', 'Pretendard', sans-serif;
+            font-family: 'Noto Sans KR', 'Outfit', sans-serif;
             background-color: var(--bg-color);
-            background-image: 
+            background-image:
                 radial-gradient(at 0% 0%, var(--bg-gradient-1) 0px, transparent 50%),
                 radial-gradient(at 100% 0%, var(--bg-gradient-2) 0px, transparent 50%),
                 radial-gradient(at 50% 100%, var(--bg-gradient-3) 0px, transparent 50%);
             color: var(--text-main);
-            transition: background-color 0.3s ease, color 0.3s ease;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            line-height: 1.8;
         }
 
-        /* Ambient Background Grid */
         .bg-grid {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background-image: linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
                               linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
             background-size: 40px 40px;
             z-index: -1;
         }
 
-        .container {
-            width: 100%;
-            max-width: 800px;
-            z-index: 10;
+        body.light-mode .bg-grid {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
         }
 
-        /* Header Section */
-        .header {
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 0 2rem;
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .nav-logo i {
+            color: var(--primary);
+            font-size: 1.4rem;
+        }
+
+        .nav-logo span {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+            background: var(--glass-bg);
+        }
+
+        .theme-toggle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-main);
+            font-size: 1rem;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        /* ===== MAIN CONTAINER ===== */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
             text-align: center;
-            margin-bottom: 3rem;
+            padding: 4rem 0 2rem;
             animation: fadeInDown 0.8s ease-out;
         }
 
-        .logo-box {
+        .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 8px 20px;
+            gap: 8px;
+            background: rgba(99, 102, 241, 0.1);
+            padding: 6px 16px;
             border-radius: 100px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            margin-bottom: 1rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .logo-box i {
-            color: var(--primary);
-            font-size: 1rem;
-            text-shadow: 0 0 10px var(--primary-glow);
-        }
-
-        .logo-box span {
-            font-size: 0.85rem;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            margin-bottom: 1.5rem;
+            font-size: 0.8rem;
             font-weight: 600;
-            letter-spacing: 2px;
             color: var(--primary);
+            letter-spacing: 1px;
             text-transform: uppercase;
         }
 
-        .header h1 {
-            font-size: 3rem;
+        .hero h1 {
+            font-size: 2.8rem;
             font-weight: 800;
             background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.5px;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            line-height: 1.3;
         }
 
-        .header p {
+        body.light-mode .hero h1 {
+            background: linear-gradient(135deg, #0f172a 0%, #475569 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .hero p {
             color: var(--text-muted);
             font-size: 1.1rem;
-            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
         }
 
-        /* Main Glass Dashboard */
+        /* ===== AD CONTAINER ===== */
+        .ad-container {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1rem;
+            text-align: center;
+            overflow: hidden;
+            margin: 1.5rem 0;
+        }
+
+        .ad-container .ad-label {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            opacity: 0.4;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== GENERATOR TOOL ===== */
+        .tool-section {
+            margin: 2rem 0;
+        }
+
+        .tool-section .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .tool-section .section-title i {
+            color: var(--primary);
+        }
+
         .dashboard {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 24px;
             padding: 2.5rem;
             backdrop-filter: blur(20px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 25px 50px -12px var(--shadow);
             display: flex;
             flex-direction: column;
             gap: 2rem;
             animation: fadeInUp 0.8s ease-out 0.2s backwards;
         }
 
-        /* Controls Row */
         .controls {
             display: flex;
             justify-content: center;
             gap: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid var(--divider);
             padding-bottom: 2rem;
         }
 
@@ -172,7 +305,7 @@
             border: none;
             padding: 1rem 2.5rem;
             border-radius: 16px;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 800;
             cursor: pointer;
             display: flex;
@@ -182,15 +315,14 @@
             box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.3);
             position: relative;
             overflow: hidden;
+            font-family: 'Noto Sans KR', sans-serif;
         }
 
         .btn-generate::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: 0.5s;
         }
@@ -200,74 +332,56 @@
             box-shadow: 0 20px 35px -5px rgba(99, 102, 241, 0.4);
         }
 
-        .btn-generate:hover::before {
-            left: 100%;
-        }
+        .btn-generate:hover::before { left: 100%; }
+        .btn-generate:active { transform: translateY(1px); }
+        .btn-generate i { font-size: 1.1rem; transition: transform 0.5s ease; }
+        .btn-generate:hover i { transform: rotate(360deg); }
 
-        .btn-generate:active {
-            transform: translateY(1px);
-        }
-
-        .btn-generate i {
-            font-size: 1.2rem;
-            transition: transform 0.5s ease;
-        }
-
-        .btn-generate:hover i {
-            transform: rotate(360deg);
-        }
-
-        /* Results Grid */
         .results-container {
             display: flex;
             flex-direction: column;
-            gap: 1.2rem;
+            gap: 1rem;
         }
 
         .game-row {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.03);
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
             border-radius: 16px;
-            padding: 1.2rem 1.8rem;
+            padding: 1.1rem 1.5rem;
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            gap: 1.2rem;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
 
         .game-row:hover {
-            background: rgba(255, 255, 255, 0.04);
             transform: scale(1.01);
-            border-color: rgba(255, 255, 255, 0.06);
+            border-color: rgba(99, 102, 241, 0.15);
         }
 
         .game-label {
             font-family: 'Outfit', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 800;
             color: var(--text-muted);
-            min-width: 60px;
+            min-width: 55px;
             letter-spacing: 1px;
         }
 
         .balls-container {
             display: flex;
-            gap: 1rem;
-            flex-grow: 1;
-            justify-content: flex-start;
+            gap: 0.8rem;
             flex-wrap: wrap;
         }
 
         .ball {
-            width: 48px;
-            height: 48px;
+            width: 46px;
+            height: 46px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 800;
             color: white;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
@@ -278,14 +392,11 @@
             position: relative;
         }
 
-        /* 3D Sheen Detail */
         .ball::after {
             content: '';
             position: absolute;
-            top: 4px;
-            left: 8px;
-            width: 12px;
-            height: 6px;
+            top: 4px; left: 8px;
+            width: 12px; height: 6px;
             background: rgba(255, 255, 255, 0.4);
             border-radius: 50%;
             transform: rotate(-20deg);
@@ -295,33 +406,304 @@
             animation: ballPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
-        /* Action Footer */
         .footer-actions {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding-top: 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.85rem;
+            border-top: 1px solid var(--divider);
+            font-size: 0.8rem;
             color: var(--text-muted);
         }
 
-        .stats {
+        .stats { display: flex; gap: 1rem; }
+        .stat-item { display: flex; align-items: center; gap: 6px; }
+        .stat-item i { color: var(--primary); }
+
+        .empty-placeholder {
+            text-align: center;
+            padding: 3rem 0;
+            color: var(--text-muted);
             display: flex;
+            flex-direction: column;
+            align-items: center;
             gap: 1rem;
         }
 
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
+        .empty-placeholder i {
+            font-size: 3rem;
+            opacity: 0.15;
+            animation: float 4s ease-in-out infinite;
         }
 
-        .stat-item i {
+        /* ===== CONTENT SECTIONS ===== */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .content-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -15px var(--shadow);
+        }
+
+        .content-card .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: rgba(99, 102, 241, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
             color: var(--primary);
         }
 
-        /* Animations */
+        .content-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .content-card p {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.8;
+        }
+
+        /* ===== ARTICLE SECTION ===== */
+        .article-section {
+            margin: 3rem 0;
+        }
+
+        .article-section .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-section .section-header i {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .article-section .section-header h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .article-content {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .article-content h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 2rem 0 1rem;
+            padding-left: 12px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .article-content h3:first-child {
+            margin-top: 0;
+        }
+
+        .article-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 2;
+            margin-bottom: 1rem;
+        }
+
+        .article-content ul, .article-content ol {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+            line-height: 2;
+        }
+
+        .article-content li {
+            margin-bottom: 0.3rem;
+        }
+
+        .highlight-box {
+            background: rgba(99, 102, 241, 0.08);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            border-radius: 14px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box p {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .stat-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .stat-table th {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 0.8rem 1rem;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid var(--divider);
+        }
+
+        .stat-table td {
+            padding: 0.7rem 1rem;
+            border-bottom: 1px solid var(--divider);
+            color: var(--text-secondary);
+        }
+
+        .stat-table tr:hover td {
+            background: rgba(99, 102, 241, 0.03);
+        }
+
+        /* ===== FAQ SECTION ===== */
+        .faq-section {
+            margin: 3rem 0;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            margin-bottom: 0.8rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.2rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--primary);
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+            color: var(--text-muted);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.9;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 500px;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .faq-item.open .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--divider);
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-about h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-about p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        .footer-links h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 0.4rem;
+        }
+
+        .footer-links ul li a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 2rem auto 0;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--divider);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .footer-bottom p {
+            margin-bottom: 0.3rem;
+        }
+
+        /* ===== ANIMATIONS ===== */
         @keyframes fadeInDown {
             from { opacity: 0; transform: translateY(-30px); filter: blur(10px); }
             to { opacity: 1; transform: translateY(0); filter: blur(0); }
@@ -338,140 +720,69 @@
             100% { transform: scale(1) rotate(0deg); opacity: 1; }
         }
 
-        /* Empty State */
-        .empty-placeholder {
-            text-align: center;
-            padding: 3rem 0;
-            color: var(--text-muted);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .empty-placeholder i {
-            font-size: 3rem;
-            opacity: 0.2;
-            color: white;
-            animation: float 4s ease-in-out infinite;
-        }
-
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
 
-        /* Responsive Design */
-        @media (max-width: 640px) {
-            body { padding: 1rem; }
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links a.hide-mobile { display: none; }
+            .hero h1 { font-size: 2rem; }
+            .content-grid { grid-template-columns: 1fr; }
+            .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
             .dashboard { padding: 1.5rem; }
-            .header h1 { font-size: 2.2rem; }
-            .game-row { flex-direction: column; align-items: flex-start; gap: 0.8rem; padding: 1rem; }
-            .balls-container { gap: 0.6rem; }
+            .game-row { flex-direction: column; align-items: flex-start; gap: 0.6rem; padding: 1rem; }
+            .balls-container { gap: 0.5rem; }
             .ball { width: 40px; height: 40px; font-size: 0.95rem; }
+            .article-content { padding: 1.5rem; }
         }
 
-        /* Theme Toggle Button */
-        .theme-toggle {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 100;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .theme-toggle:hover {
-            transform: rotate(15deg) scale(1.1);
-        }
-
-        .theme-toggle i {
-            color: var(--text-main);
-            font-size: 1.2rem;
-        }
-
-        body.light-mode .header h1 {
-            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-        }
-        
-        body.light-mode .bg-grid {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
-        }
-
-        body.light-mode .empty-placeholder i {
-            color: var(--primary);
-            opacity: 0.3;
-        }
-
-        body.light-mode .game-row {
-            background: rgba(255, 255, 255, 0.4);
-            border-color: rgba(0, 0, 0, 0.03);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
-        }
-        
-        body.light-mode .game-row:hover {
-            background: rgba(255, 255, 255, 0.6);
-        }
-
-        /* AdSense Container */
-        .ad-container {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 1rem;
-            backdrop-filter: blur(10px);
-            text-align: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .ad-container .ad-label {
-            font-size: 0.65rem;
-            color: var(--text-muted);
-            opacity: 0.5;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-        }
-
-        .ad-container ins {
-            display: block;
+        @media (max-width: 480px) {
+            .hero { padding: 2rem 0 1rem; }
+            .hero h1 { font-size: 1.6rem; }
+            .container { padding: 1rem; }
         }
     </style>
 </head>
 <body>
-    <div class="theme-toggle" id="themeToggle" title="테마 변경">
-        <i class="fa-solid fa-moon"></i>
-    </div>
 
     <div class="bg-grid"></div>
 
-    <div class="container">
-        <div class="header">
-            <div class="logo-box">
-                <i class="fa-solid fa-sparkles"></i>
-                <span>Quantum Generator</span>
+    <!-- ===== NAVIGATION ===== -->
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">
+                <i class="fa-solid fa-clover"></i>
+                <span>LottoText</span>
+            </a>
+            <div class="nav-links">
+                <a href="#generator">번호생성</a>
+                <a href="#guide" class="hide-mobile">가이드</a>
+                <a href="#analysis" class="hide-mobile">확률분석</a>
+                <a href="#faq">FAQ</a>
+                <button class="theme-toggle" id="themeToggle" title="테마 변경">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
             </div>
-            <h1>럭키 로또 추천기</h1>
-            <p>인공지능 시뮬레이션으로 예측한 5개의 행운 번호 조합</p>
         </div>
+    </nav>
 
-        <!-- 상단 광고 영역 -->
-        <div class="ad-container" style="margin-bottom: 2rem;">
-            <div class="ad-label">Sponsored</div>
+    <div class="container">
+
+        <!-- ===== HERO ===== -->
+        <section class="hero">
+            <div class="hero-badge">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                무료 로또 번호 생성기
+            </div>
+            <h1>로또 6/45 완벽 가이드<br>번호 생성 & 확률 분석</h1>
+            <p>매주 토요일 추첨되는 로또 6/45의 번호를 무작위로 생성하고, 당첨 확률과 전략에 대한 유용한 정보를 한곳에서 확인하세요.</p>
+        </section>
+
+        <!-- ===== AD: TOP ===== -->
+        <div class="ad-container">
+            <div class="ad-label">Advertisement</div>
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-5279002869073573"
@@ -481,42 +792,246 @@
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
 
-        <div class="dashboard">
-            <div class="controls">
-                <button class="btn-generate" id="generateBtn">
-                    <i class="fa-solid fa-sync"></i>
-                    번호 생성하기
-                </button>
+        <!-- ===== GENERATOR ===== -->
+        <section class="tool-section" id="generator">
+            <div class="section-title">
+                <i class="fa-solid fa-dice"></i>
+                <span>번호 생성기</span>
             </div>
 
-            <div class="results-container" id="results">
-                <!-- Empty Placeholder Initially -->
-                <div class="empty-placeholder" id="placeholder">
-                    <i class="fa-solid fa-circle-nodes"></i>
-                    <p>번호 생성하기를 누르면 5개의 최적 조합을 추천합니다.</p>
+            <div class="dashboard">
+                <div class="controls">
+                    <button class="btn-generate" id="generateBtn">
+                        <i class="fa-solid fa-rotate"></i>
+                        5게임 번호 생성하기
+                    </button>
                 </div>
-            </div>
 
-            <div class="footer-actions">
-                <div class="stats">
-                    <div class="stat-item">
-                        <i class="fa-solid fa-shield-check"></i>
-                        <span>중복 검증 완료</span>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fa-regular fa-clock"></i>
-                        <span id="timestamp">대기 중</span>
+                <div class="results-container" id="results">
+                    <div class="empty-placeholder" id="placeholder">
+                        <i class="fa-solid fa-circle-nodes"></i>
+                        <p>버튼을 누르면 5개의 무작위 번호를 생성합니다.</p>
                     </div>
                 </div>
-                <div>
-                    <span>정렬 방식: 오름차순</span>
+
+                <div class="footer-actions">
+                    <div class="stats">
+                        <div class="stat-item">
+                            <i class="fa-solid fa-check-circle"></i>
+                            <span>중복 검증 완료</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fa-regular fa-clock"></i>
+                            <span id="timestamp">대기 중</span>
+                        </div>
+                    </div>
+                    <span>정렬: 오름차순</span>
                 </div>
             </div>
+        </section>
+
+        <!-- ===== FEATURE CARDS ===== -->
+        <div class="content-grid">
+            <article class="content-card">
+                <div class="card-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                <h3>당첨 확률 이해하기</h3>
+                <p>로또 6/45의 1등 당첨 확률은 약 1/8,145,060입니다. 45개의 숫 자 중 6개를 맞춰야 하는 조합의 수를 의미합니다. 2등은 5개 + 보너스 번호, 3등은 5개를 맞추면 가능합니다.</p>
+            </article>
+            <article class="content-card">
+                <div class="card-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                <h3>번호 선택 전략</h3>
+                <p>통계적으로 모든 번호가 동일한 확률을 가지지만, 많은 전문가들은 고른 번호 분배(낮은 수와 높은 수의 혼합), 연속 번호 포함, 홀짝 비율 균형 등이 실질적으로 유리하다고 조언합니다.</p>
+            </article>
+            <article class="content-card">
+                <div class="card-icon"><i class="fa-solid fa-coins"></i></div>
+                <h3>당첨금 구조</h3>
+                <p>로또 당첨금은 판매 수익의 50%가 배분됩니다. 1등은 총 당첨금의 75%, 2등은 12.5%, 3등은 12.5%가 배당되며, 4등은 고정 5만원, 5등은 고정 5,000원입니다.</p>
+            </article>
+            <article class="content-card">
+                <div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                <h3>책임감 있는 구매</h3>
+                <p>로또는 재미를 위한 것이며, 여유 자금의 범위 안에서 즐기는 것이 중요합니다. 로또를 과도하게 구매하는 것은 재정적으로 부담이 될 수 있으므로, 항상 계획적으로 구매하세요.</p>
+            </article>
         </div>
 
-        <!-- 하단 광고 영역 -->
-        <div class="ad-container" style="margin-top: 2rem;">
-            <div class="ad-label">Sponsored</div>
+        <!-- ===== AD: MIDDLE ===== -->
+        <div class="ad-container">
+            <div class="ad-label">Advertisement</div>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-5279002869073573"
+                 data-ad-slot="auto"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <!-- ===== GUIDE ARTICLE ===== -->
+        <section class="article-section" id="guide">
+            <div class="section-header">
+                <i class="fa-solid fa-book-open"></i>
+                <h2>로또 6/45 완벽 입문 가이드</h2>
+            </div>
+            <div class="article-content">
+                <h3>로또 6/45란?</h3>
+                <p>로또 6/45는 대한민국 동행복권에서 운영하는 대표적인 복권 게임입니다. 매주 토요일 밤 8시 45분에 추첨이 진행되며, 1부터 45까지의 숫자 중 6개를 선택하여 일치하는 개수에 따라 당첨금을 받는 방식입니다. 2002년 12월 첫 회차 이후 약 20년 이상 운영되고 있으며, 로또 한 장의 가격은 1,000원입니다.</p>
+
+                <h3>구매 방법</h3>
+                <p>로또 6/45는 전국 로또 판매점에서 직접 구매하거나, 동행복권 공식 웹사이트(www.dhlottery.co.kr)에서 온라인으로도 구매할 수 있습니다.</p>
+                <ul>
+                    <li><strong>자동:</strong> 컴퓨터가 무작위로 번호를 선정합니다.</li>
+                    <li><strong>수동:</strong> 구매자가 직접 6개 숫자를 고릅니다.</li>
+                    <li><strong>반자동:</strong> 일부 번호는 직접, 나머지는 컴퓨터가 선정합니다.</li>
+                </ul>
+                <p>1장당 1게임이며, 최대 5게임까지 한 장에 구매할 수 있습니다. 본 사이트의 생성기도 이에 맞춰 5게임을 한 번에 제공합니다.</p>
+
+                <h3>추첨과 당첨 확인</h3>
+                <p>매주 토요일 밤 MBC에서 추첨 방송이 생중계되며, 동행복권 공식 사이트에서 당첨 번호를 즉시 확인할 수 있습니다. 당첨금은 1등부터 5등까지 있으며, 등위에 따라 금액이 크게 달라집니다.</p>
+
+                <div class="highlight-box">
+                    <p><i class="fa-solid fa-circle-info"></i>&nbsp;&nbsp;<strong>팁:</strong> 당첨금 수령 기한은 지급 개시일로부터 1년입니다. 기한 내 미수령 시 복권기금으로 귀속되니 꼭 기간 내에 확인하세요!</p>
+                </div>
+
+                <h3>번호 색상의 의미</h3>
+                <p>로또 6/45에서 각 번호는 아래와 같은 색상 그룹으로 나뉩니다. 이는 방송과 공식 홈페이지에서 번호를 쉽게 구분하기 위해 사용됩니다.</p>
+                <table class="stat-table">
+                    <thead>
+                        <tr>
+                            <th>번호 범위</th>
+                            <th>색상</th>
+                            <th>예시</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1 ~ 10</td><td>🟡 노랑</td><td>1, 5, 7, 10</td></tr>
+                        <tr><td>11 ~ 20</td><td>🔵 파랑</td><td>11, 14, 17, 20</td></tr>
+                        <tr><td>21 ~ 30</td><td>🔴 빨강</td><td>21, 25, 28, 30</td></tr>
+                        <tr><td>31 ~ 40</td><td>⚪ 회색</td><td>31, 35, 37, 40</td></tr>
+                        <tr><td>41 ~ 45</td><td>🟢 초록</td><td>41, 43, 44, 45</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ===== PROBABILITY ANALYSIS ===== -->
+        <section class="article-section" id="analysis">
+            <div class="section-header">
+                <i class="fa-solid fa-chart-line"></i>
+                <h2>당첨 확률 심층 분석</h2>
+            </div>
+            <div class="article-content">
+                <h3>등위별 당첨 확률</h3>
+                <p>로또 6/45의 등위별 확률은 수학적 조합론(Combinatorics)을 기반으로 정확하게 산출됩니다. 아래 표는 각 등위의 당첨 조건과 확률을 나타냅니다.</p>
+
+                <table class="stat-table">
+                    <thead>
+                        <tr>
+                            <th>등위</th>
+                            <th>조건</th>
+                            <th>확률</th>
+                            <th>평균 당첨금</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>1등</strong></td><td>6개 번호 일치</td><td>1/8,145,060</td><td>약 20억 원</td></tr>
+                        <tr><td><strong>2등</strong></td><td>5개 + 보너스 번호</td><td>1/1,357,510</td><td>약 5천만 원</td></tr>
+                        <tr><td><strong>3등</strong></td><td>5개 일치</td><td>1/35,724</td><td>약 150만 원</td></tr>
+                        <tr><td><strong>4등</strong></td><td>4개 일치</td><td>1/733</td><td>고정 50,000원</td></tr>
+                        <tr><td><strong>5등</strong></td><td>3개 일치</td><td>1/45</td><td>고정 5,000원</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>기대값 분석</h3>
+                <p>로또 1장(1,000원)을 구매했을 때의 수학적 기대값은 약 500원 전후입니다. 이는 판매 수익의 약 50%가 당첨금으로 배분되기 때문입니다. 즉, 장기적으로는 구매 금액의 절반 정도를 기대할 수 있으나, 이는 통계적 평균이므로 개별 결과는 크게 다를 수 있습니다.</p>
+
+                <h3>자주 등장하는 번호</h3>
+                <p>역대 추첨 데이터를 분석하면, 일부 번호가 다른 번호보다 약간 더 자주 등장하는 경향이 있습니다. 다만 이는 통계적 변동의 범위 안에 있으며, 미래의 결과를 예측하는 데 사용될 수는 없습니다. 모든 공이 뽑힐 확률은 매 회차마다 동일합니다.</p>
+
+                <div class="highlight-box">
+                    <p><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;&nbsp;<strong>주의:</strong> 과거 데이터에 기반한 "핫 넘버"와 "콜드 넘버" 전략은 통계적으로 유의미한 차이를 만들지 않습니다. 로또는 매회 독립 시행이므로, 과거 결과가 미래에 영향을 주지 않습니다.</p>
+                </div>
+
+                <h3>번호 선택 시 참고사항</h3>
+                <ol>
+                    <li><strong>고른 분배:</strong> 1~45를 5개 구간(1-9, 10-19, 20-29, 30-39, 40-45)으로 나누어 각 구간에서 고르게 고르면 다양한 조합을 확보할 수 있습니다.</li>
+                    <li><strong>홀짝 비율:</strong> 6개 번호 중 홀수 3개, 짝수 3개의 조합이 통계적으로 가장 빈번하게 등장합니다.</li>
+                    <li><strong>합산 범위:</strong> 역대 1등 당첨 번호의 합(6개 합산)은 대부분 100~180 사이에 집중되어 있습니다.</li>
+                    <li><strong>인기 번호 회피:</strong> 생일(1-31), 일렬 번호(1,2,3,4,5,6) 등 많은 사람이 선택하는 번호는 당첨 시 분배 금액이 적어질 수 있으므로 참고하세요.</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ===== FAQ ===== -->
+        <section class="faq-section" id="faq">
+            <div class="section-header" style="display:flex; align-items:center; gap:10px; margin-bottom:1.5rem;">
+                <i class="fa-solid fa-circle-question" style="color:var(--primary); font-size:1.2rem;"></i>
+                <h2 style="font-size:1.5rem; font-weight:800;">자주 묻는 질문 (FAQ)</h2>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>이 사이트의 번호 생성기는 어떤 방식으로 작동하나요?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>본 생성기는 JavaScript의 <code>Math.random()</code> 함수를 사용하여 1~45 사이의 숫자를 무작위로 선택합니다. 중복을 제거한 뒤 6개의 고유한 번호를 오름차순으로 정렬하여 제공합니다. 이는 로또 판매점의 자동 번호 생성과 동일한 원리입니다.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>생성된 번호로 당첨 가능성이 높아지나요?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>아닙니다. 무작위 생성기는 사람의 편향 없이 완전 무작위 숫자를 제공하지만, 이것이 당첨 확률을 높이지는 않습니다. 로또의 각 회차는 완전히 독립적이며, 어떤 번호 선택 방법을 사용하더라도 당첨 확률은 동일하게 1/8,145,060입니다.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>로또 구매에 나이 제한이 있나요?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>네, 복권 및 복권기금법에 따라 만 18세 미만의 미성년자는 로또를 포함한 모든 복권의 구매가 금지되어 있습니다. 판매점에서 신분증 확인을 요청할 수 있습니다.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>당첨금에 세금이 부과되나요?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>5만 원 이하(5등)의 당첨금은 비과세입니다. 5만 원 초과 ~ 3억 원 이하의 당첨금에는 22%(소득세 20% + 주민세 2%)의 세금이 부과됩니다. 3억 원을 초과하는 부분에 대해서는 33%(소득세 30% + 주민세 3%)의 세금이 부과됩니다.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>당첨금은 어디서 수령하나요?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>5등(5,000원)은 모든 로또 판매점에서 수령 가능합니다. 4등(50,000원)은 농협 은행 지점에서 수령하며, 3등 이상은 동행복권 본사(서울) 또는 농협은행 본점에서 수령합니다. 1등 당첨 시에는 신분증과 당첨 복권을 지참하여 농협 본점을 방문해야 합니다.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>이 사이트는 무료인가요?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>네, 본 사이트의 모든 콘텐츠와 번호 생성기는 완전 무료로 제공됩니다. 별도의 회원가입이나 결제 없이 자유롭게 이용하실 수 있습니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== AD: BOTTOM ===== -->
+        <div class="ad-container">
+            <div class="ad-label">Advertisement</div>
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-5279002869073573"
@@ -527,19 +1042,49 @@
         </div>
     </div>
 
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-about">
+                <h4><i class="fa-solid fa-clover"></i>&nbsp; LottoText</h4>
+                <p>LottoText는 로또 6/45에 관한 정확한 정보와 무료 번호 생성 도구를 제공하는 비영리 정보 사이트입니다. 본 사이트는 복권 판매 또는 도박을 권유하지 않으며, 건전한 복권 문화 확산을 지향합니다. 생성된 번호는 무작위이며, 당첨을 보장하지 않습니다.</p>
+            </div>
+            <div class="footer-links">
+                <h4>사이트 안내</h4>
+                <ul>
+                    <li><a href="#generator">번호 생성기</a></li>
+                    <li><a href="#guide">입문 가이드</a></li>
+                    <li><a href="#analysis">확률 분석</a></li>
+                    <li><a href="#faq">자주 묻는 질문</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>법적 고지</h4>
+                <ul>
+                    <li><a href="privacy.html">개인정보처리방침</a></li>
+                    <li><a href="terms.html">이용약관</a></li>
+                    <li><a href="disclaimer.html">면책조항</a></li>
+                    <li><a href="contact.html">문의하기</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2026 LottoText. All rights reserved.</p>
+            <p>본 사이트는 동행복권과 관련이 없는 독립 정보 사이트입니다. 로또는 만 18세 이상만 구매할 수 있습니다.</p>
+        </div>
+    </footer>
+
     <script>
+        // ===== LOTTO GENERATOR =====
         const generateBtn = document.getElementById('generateBtn');
         const resultsContainer = document.getElementById('results');
-        const placeholder = document.getElementById('placeholder');
         const timestampEl = document.getElementById('timestamp');
 
         function generateLottoNumbers() {
             const numbers = [];
-            while(numbers.length < 6) {
+            while (numbers.length < 6) {
                 const num = Math.floor(Math.random() * 45) + 1;
-                if(!numbers.includes(num)) {
-                    numbers.push(num);
-                }
+                if (!numbers.includes(num)) numbers.push(num);
             }
             return numbers.sort((a, b) => a - b);
         }
@@ -554,53 +1099,39 @@
 
         function updateTimestamp() {
             const now = new Date();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            timestampEl.innerText = `${hours}:${minutes}:${seconds} 생성됨`;
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            const s = String(now.getSeconds()).padStart(2, '0');
+            timestampEl.innerText = `${h}:${m}:${s} 생성됨`;
         }
 
         generateBtn.addEventListener('click', () => {
-            // Clear previous results or placeholder
             resultsContainer.innerHTML = '';
-            
-            // Add a loading effect on button if desired
             generateBtn.style.pointerEvents = 'none';
             generateBtn.style.opacity = '0.8';
             generateBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 분석 중...';
 
             setTimeout(() => {
-                resultsContainer.innerHTML = ''; // Fully ensure clean slate
-                
-                // Generate 5 sets
-                for(let i = 0; i < 5; i++) {
+                resultsContainer.innerHTML = '';
+                for (let i = 0; i < 5; i++) {
                     const numbers = generateLottoNumbers();
-                    
                     const row = document.createElement('div');
                     row.className = 'game-row';
-                    
+
                     const label = document.createElement('div');
                     label.className = 'game-label';
                     label.innerText = `GAME ${i + 1}`;
-                    
+
                     const ballsContainer = document.createElement('div');
                     ballsContainer.className = 'balls-container';
-                    
+
                     numbers.forEach((num, index) => {
                         const ball = document.createElement('div');
                         ball.className = 'ball';
                         ball.innerText = num;
                         ball.style.background = getBallGradient(num);
-                        
-                        // Stagger the bounce animation for each ball
-                        const delay = (i * 100) + (index * 80); // Game delay + Ball delay
-                        ball.style.animationDelay = `${delay}ms`;
-                        
-                        // Add class immediately after insertion to trigger animation
-                        setTimeout(() => {
-                            ball.classList.add('pop-in');
-                        }, 10);
-
+                        ball.style.animationDelay = `${(i * 100) + (index * 80)}ms`;
+                        setTimeout(() => ball.classList.add('pop-in'), 10);
                         ballsContainer.appendChild(ball);
                     });
 
@@ -608,35 +1139,45 @@
                     row.appendChild(ballsContainer);
                     resultsContainer.appendChild(row);
                 }
-
                 updateTimestamp();
-                
-                // Reset Button
                 generateBtn.style.pointerEvents = 'auto';
                 generateBtn.style.opacity = '1';
-                generateBtn.innerHTML = '<i class="fa-solid fa-sync"></i> 다시 생성하기';
-
-            }, 600); // 600ms artificial delay for "computing" feel
+                generateBtn.innerHTML = '<i class="fa-solid fa-rotate"></i> 다시 생성하기';
+            }, 600);
         });
 
-        // 페이지 로드 시 자동으로 첫 5게임 생성
-        window.addEventListener('DOMContentLoaded', () => {
-            generateBtn.click();
-        });
+        // Auto-generate on load
+        window.addEventListener('DOMContentLoaded', () => generateBtn.click());
 
-        // 테마 토글 핸들러
+        // ===== THEME TOGGLE =====
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = themeToggle.querySelector('i');
-        
+
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('light-mode');
-            
-            if (document.body.classList.contains('light-mode')) {
-                themeIcon.className = 'fa-solid fa-sun';
-                // 로컬 스토리지 등에 저장할 수도 있습니다.
-            } else {
-                themeIcon.className = 'fa-solid fa-moon';
-            }
+            themeIcon.className = document.body.classList.contains('light-mode')
+                ? 'fa-solid fa-sun'
+                : 'fa-solid fa-moon';
+        });
+
+        // ===== FAQ ACCORDION =====
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                document.querySelectorAll('.faq-item').forEach(other => {
+                    if (other !== item) other.classList.remove('open');
+                });
+                item.classList.toggle('open');
+            });
+        });
+
+        // ===== SMOOTH SCROLLING =====
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(a.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
         });
     </script>
 </body>
