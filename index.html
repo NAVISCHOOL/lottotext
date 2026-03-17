@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PREMIUM LOTTO 6/45 - 행운의 번호 생성기</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Pretendard:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            /* Default Dark Mode */
+            --bg-color: #0c0d12;
+            --glass-bg: rgba(23, 25, 35, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.06);
+            --primary: #6366f1;
+            --primary-glow: rgba(99, 102, 241, 0.4);
+            --accent: #d946ef;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --bg-gradient-1: rgba(99, 102, 241, 0.15);
+            --bg-gradient-2: rgba(217, 70, 239, 0.1);
+            --bg-gradient-3: rgba(30, 41, 59, 0.5);
+            
+            /* Lotto Ball Colors */
+            --ball-1: linear-gradient(135deg, #ffd54f 0%, #ffb300 100%); /* 1-10 */
+            --ball-11: linear-gradient(135deg, #64b5f6 0%, #1976d2 100%); /* 11-20 */
+            --ball-21: linear-gradient(135deg, #ef5350 0%, #c62828 100%); /* 21-30 */
+            --ball-31: linear-gradient(135deg, #b0bec5 0%, #546e7a 100%); /* 31-40 */
+            --ball-41: linear-gradient(135deg, #81c784 0%, #388e3c 100%); /* 41-45 */
+        }
+
+        body.light-mode {
+            --bg-color: #f1f5f9;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --primary: #4f46e5;
+            --primary-glow: rgba(79, 70, 229, 0.2);
+            --accent: #c026d3;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --bg-gradient-1: rgba(99, 102, 241, 0.06);
+            --bg-gradient-2: rgba(217, 70, 239, 0.04);
+            --bg-gradient-3: rgba(200, 200, 220, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Outfit', 'Pretendard', sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, var(--bg-gradient-1) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, var(--bg-gradient-2) 0px, transparent 50%),
+                radial-gradient(at 50% 100%, var(--bg-gradient-3) 0px, transparent 50%);
+            color: var(--text-main);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Background Grid */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            z-index: 10;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .logo-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 8px 20px;
+            border-radius: 100px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-box i {
+            color: var(--primary);
+            font-size: 1rem;
+            text-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        .logo-box span {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--primary);
+            text-transform: uppercase;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        /* Main Glass Dashboard */
+        .dashboard {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        /* Controls Row */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 2rem;
+        }
+
+        .btn-generate {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-generate::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-generate:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 20px 35px -5px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-generate:hover::before {
+            left: 100%;
+        }
+
+        .btn-generate:active {
+            transform: translateY(1px);
+        }
+
+        .btn-generate i {
+            font-size: 1.2rem;
+            transition: transform 0.5s ease;
+        }
+
+        .btn-generate:hover i {
+            transform: rotate(360deg);
+        }
+
+        /* Results Grid */
+        .results-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .game-row {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 1.2rem 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-row:hover {
+            background: rgba(255, 255, 255, 0.04);
+            transform: scale(1.01);
+            border-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .game-label {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--text-muted);
+            min-width: 60px;
+            letter-spacing: 1px;
+        }
+
+        .balls-container {
+            display: flex;
+            gap: 1rem;
+            flex-grow: 1;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .ball {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2),
+                        inset 0 -3px 6px rgba(0, 0, 0, 0.3),
+                        inset 0 3px 6px rgba(255, 255, 255, 0.3);
+            transform: scale(0);
+            position: relative;
+        }
+
+        /* 3D Sheen Detail */
+        .ball::after {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 8px;
+            width: 12px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            transform: rotate(-20deg);
+        }
+
+        .ball.pop-in {
+            animation: ballPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        /* Action Footer */
+        .footer-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .stats {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .stat-item i {
+            color: var(--primary);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        @keyframes ballPop {
+            0% { transform: scale(0) rotate(-180deg); opacity: 0; }
+            50% { transform: scale(1.1) rotate(10deg); opacity: 1; }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+
+        /* Empty State */
+        .empty-placeholder {
+            text-align: center;
+            padding: 3rem 0;
+            color: var(--text-muted);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .empty-placeholder i {
+            font-size: 3rem;
+            opacity: 0.2;
+            color: white;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 640px) {
+            body { padding: 1rem; }
+            .dashboard { padding: 1.5rem; }
+            .header h1 { font-size: 2.2rem; }
+            .game-row { flex-direction: column; align-items: flex-start; gap: 0.8rem; padding: 1rem; }
+            .balls-container { gap: 0.6rem; }
+            .ball { width: 40px; height: 40px; font-size: 0.95rem; }
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        .theme-toggle i {
+            color: var(--text-main);
+            font-size: 1.2rem;
+        }
+
+        body.light-mode .header h1 {
+            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        
+        body.light-mode .bg-grid {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+        }
+
+        body.light-mode .empty-placeholder i {
+            color: var(--primary);
+            opacity: 0.3;
+        }
+
+        body.light-mode .game-row {
+            background: rgba(255, 255, 255, 0.4);
+            border-color: rgba(0, 0, 0, 0.03);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+        }
+        
+        body.light-mode .game-row:hover {
+            background: rgba(255, 255, 255, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-toggle" id="themeToggle" title="테마 변경">
+        <i class="fa-solid fa-moon"></i>
+    </div>
+
+    <div class="bg-grid"></div>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo-box">
+                <i class="fa-solid fa-sparkles"></i>
+                <span>Quantum Generator</span>
+            </div>
+            <h1>럭키 로또 추천기</h1>
+            <p>인공지능 시뮬레이션으로 예측한 5개의 행운 번호 조합</p>
+        </div>
+
+        <div class="dashboard">
+            <div class="controls">
+                <button class="btn-generate" id="generateBtn">
+                    <i class="fa-solid fa-sync"></i>
+                    번호 생성하기
+                </button>
+            </div>
+
+            <div class="results-container" id="results">
+                <!-- Empty Placeholder Initially -->
+                <div class="empty-placeholder" id="placeholder">
+                    <i class="fa-solid fa-circle-nodes"></i>
+                    <p>번호 생성하기를 누르면 5개의 최적 조합을 추천합니다.</p>
+                </div>
+            </div>
+
+            <div class="footer-actions">
+                <div class="stats">
+                    <div class="stat-item">
+                        <i class="fa-solid fa-shield-check"></i>
+                        <span>중복 검증 완료</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fa-regular fa-clock"></i>
+                        <span id="timestamp">대기 중</span>
+                    </div>
+                </div>
+                <div>
+                    <span>정렬 방식: 오름차순</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const generateBtn = document.getElementById('generateBtn');
+        const resultsContainer = document.getElementById('results');
+        const placeholder = document.getElementById('placeholder');
+        const timestampEl = document.getElementById('timestamp');
+
+        function generateLottoNumbers() {
+            const numbers = [];
+            while(numbers.length < 6) {
+                const num = Math.floor(Math.random() * 45) + 1;
+                if(!numbers.includes(num)) {
+                    numbers.push(num);
+                }
+            }
+            return numbers.sort((a, b) => a - b);
+        }
+
+        function getBallGradient(num) {
+            if (num <= 10) return 'var(--ball-1)';
+            if (num <= 20) return 'var(--ball-11)';
+            if (num <= 30) return 'var(--ball-21)';
+            if (num <= 40) return 'var(--ball-31)';
+            return 'var(--ball-41)';
+        }
+
+        function updateTimestamp() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            timestampEl.innerText = `${hours}:${minutes}:${seconds} 생성됨`;
+        }
+
+        generateBtn.addEventListener('click', () => {
+            // Clear previous results or placeholder
+            resultsContainer.innerHTML = '';
+            
+            // Add a loading effect on button if desired
+            generateBtn.style.pointerEvents = 'none';
+            generateBtn.style.opacity = '0.8';
+            generateBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 분석 중...';
+
+            setTimeout(() => {
+                resultsContainer.innerHTML = ''; // Fully ensure clean slate
+                
+                // Generate 5 sets
+                for(let i = 0; i < 5; i++) {
+                    const numbers = generateLottoNumbers();
+                    
+                    const row = document.createElement('div');
+                    row.className = 'game-row';
+                    
+                    const label = document.createElement('div');
+                    label.className = 'game-label';
+                    label.innerText = `GAME ${i + 1}`;
+                    
+                    const ballsContainer = document.createElement('div');
+                    ballsContainer.className = 'balls-container';
+                    
+                    numbers.forEach((num, index) => {
+                        const ball = document.createElement('div');
+                        ball.className = 'ball';
+                        ball.innerText = num;
+                        ball.style.background = getBallGradient(num);
+                        
+                        // Stagger the bounce animation for each ball
+                        const delay = (i * 100) + (index * 80); // Game delay + Ball delay
+                        ball.style.animationDelay = `${delay}ms`;
+                        
+                        // Add class immediately after insertion to trigger animation
+                        setTimeout(() => {
+                            ball.classList.add('pop-in');
+                        }, 10);
+
+                        ballsContainer.appendChild(ball);
+                    });
+
+                    row.appendChild(label);
+                    row.appendChild(ballsContainer);
+                    resultsContainer.appendChild(row);
+                }
+
+                updateTimestamp();
+                
+                // Reset Button
+                generateBtn.style.pointerEvents = 'auto';
+                generateBtn.style.opacity = '1';
+                generateBtn.innerHTML = '<i class="fa-solid fa-sync"></i> 다시 생성하기';
+
+            }, 600); // 600ms artificial delay for "computing" feel
+        });
+
+        // 페이지 로드 시 자동으로 첫 5게임 생성
+        window.addEventListener('DOMContentLoaded', () => {
+            generateBtn.click();
+        });
+
+        // 테마 토글 핸들러
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            
+            if (document.body.classList.contains('light-mode')) {
+                themeIcon.className = 'fa-solid fa-sun';
+                // 로컬 스토리지 등에 저장할 수도 있습니다.
+            } else {
+                themeIcon.className = 'fa-solid fa-moon';
+            }
+        });
+    </script>
+</body>
+</html>
